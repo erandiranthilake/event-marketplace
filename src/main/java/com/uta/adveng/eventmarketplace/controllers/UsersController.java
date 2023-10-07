@@ -9,6 +9,6 @@ public class UsersController {
 
     @GetMapping("/users/getUsers")
     public String getUsers() {
-        return "Erandi and Sharoon";
+        return "Erandi and Shanoor";
     }
 }
