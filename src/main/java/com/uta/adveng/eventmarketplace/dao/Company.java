@@ -14,10 +14,10 @@ import lombok.NonNull;
 public class Company {
     @Id
     @NonNull
-    private String username;
-    private String companyname;
-    private String addresslineone;
-    private String addresslinetwo;
+    private String companyId;
+    private String companyName;
+    private String addressLineOne;
+    private String addressLineTwo;
     private String city;
     private String state;
     private Integer zipcode;

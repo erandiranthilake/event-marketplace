@@ -1,0 +1,14 @@
+{
+  "username":"testvendorusername",
+  "password":"testvendorpassword",
+  "firstname":"TestFirstName",
+  "lastname":"TestLastName",
+  "email":"testvendor@gmail.com",
+  "role":"VENDOR",
+  "companyname":"TestCompanyname",
+  "addresslineone":"TestAddresslineone",
+  "addresslinetwo": "TestAaddresslinetwo",
+  "city":"TestCity",
+  "state":"TestState",
+  "zipcode":77777
+}
