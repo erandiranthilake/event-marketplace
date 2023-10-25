@@ -18,6 +18,7 @@ public class Message {
     private long id;
     private String senderId;
     private String receiverId;
+    private String messageHeader;
     private String message;
     private String status;
 }
