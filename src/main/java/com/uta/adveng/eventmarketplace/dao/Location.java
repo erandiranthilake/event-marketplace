@@ -1,21 +1,23 @@
 package com.uta.adveng.eventmarketplace.dao;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class Location {
     @Id
-    @NonNull
-    private String companyId; //same as the userId that registers this company
-    private String companyName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String companyId;
+    private String serviceId;
     private String addressLineOne;
     private String addressLineTwo;
     private String city;
