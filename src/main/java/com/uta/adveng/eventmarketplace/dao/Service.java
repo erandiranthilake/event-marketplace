@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class Service {
     @EmbeddedId
     private ServiceKey serviceKey;
-
     private String serviceName;
     private String description;
     private Double price;

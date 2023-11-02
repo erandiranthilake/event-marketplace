@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @AllArgsConstructor
@@ -50,7 +52,23 @@ public class ServiceController {
         } catch (RuntimeException re) {
             responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            responseEntity = new ResponseEntity<Object>("LOGIN FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity<Object>("Failed to get service by Service Kay", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    @GetMapping("/service/{companyId}")
+    public ResponseEntity<Object> getAllServicesByCompanyId(@PathVariable String companyId) {
+        ResponseEntity responseEntity;
+        try{
+            ValidationUtil.checkNotNull(companyId, "CompanyId");
+            List<Service> responseService = serviceRepository.findByServiceKeyCompanyId(companyId);
+
+            responseEntity = new ResponseEntity<Object>(responseService, HttpStatus.OK);
+        } catch (RuntimeException re) {
+            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<Object>("Failed to get service by Company Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
