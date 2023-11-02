@@ -2,10 +2,7 @@ package com.uta.adveng.eventmarketplace.controllers;
 
 import com.uta.adveng.eventmarketplace.dao.Service;
 import com.uta.adveng.eventmarketplace.dao.ServiceKey;
-import com.uta.adveng.eventmarketplace.dao.Users;
 import com.uta.adveng.eventmarketplace.dataaccess.IServiceRepository;
-import com.uta.adveng.eventmarketplace.dto.RegistrationForm;
-import com.uta.adveng.eventmarketplace.service.LoginService;
 import com.uta.adveng.eventmarketplace.util.ValidationUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,7 +36,7 @@ public class ServiceController {
     }
 
     @GetMapping("/service/{companyId}/{serviceId}")
-    public ResponseEntity<Object> getService(@PathVariable String companyId, @PathVariable String serviceId) {
+    public ResponseEntity<Object> getServiceByServiceKey(@PathVariable String companyId, @PathVariable String serviceId) {
         ResponseEntity responseEntity;
         try{
             ValidationUtil.checkNotNull(companyId, "CompanyId");
