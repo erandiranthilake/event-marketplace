@@ -49,7 +49,7 @@ public class ServiceController {
         } catch (RuntimeException re) {
             responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            responseEntity = new ResponseEntity<Object>("Failed to get service by Service Kay", HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity<Object>("Failed to get service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
