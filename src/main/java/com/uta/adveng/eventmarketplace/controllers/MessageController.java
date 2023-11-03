@@ -17,6 +17,7 @@ public class MessageController {
 
     private IMessageRepository messageRepository;
 
+    @CrossOrigin
     @PostMapping("/message/create")
     public ResponseEntity<Object> createMessage(@RequestBody Message message) {
         ResponseEntity responseEntity;
@@ -34,6 +35,7 @@ public class MessageController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/message/send/{senderId}")
     public ResponseEntity<Object> getMessageBySenderId(@PathVariable String senderId) {
         ResponseEntity responseEntity;
@@ -50,6 +52,7 @@ public class MessageController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/message/receive/{receiverId}")
     public ResponseEntity<Object> getMessageByReceiverId(@PathVariable String receiverId) {
         ResponseEntity responseEntity;

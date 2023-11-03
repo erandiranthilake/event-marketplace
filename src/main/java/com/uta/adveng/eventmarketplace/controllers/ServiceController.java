@@ -17,7 +17,8 @@ import java.util.List;
 public class ServiceController {
 
     private IServiceRepository serviceRepository;
-
+    
+    @CrossOrigin
     @PostMapping("/service/create")
     public ResponseEntity<Object> createService(@RequestBody Service service) {
         ResponseEntity responseEntity;
@@ -35,6 +36,7 @@ public class ServiceController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/service/{companyId}/{serviceId}")
     public ResponseEntity<Object> getServiceByServiceKey(@PathVariable String companyId, @PathVariable String serviceId) {
         ResponseEntity responseEntity;
@@ -54,6 +56,7 @@ public class ServiceController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/service/{companyId}")
     public ResponseEntity<Object> getAllServicesByCompanyId(@PathVariable String companyId) {
         ResponseEntity responseEntity;

@@ -16,6 +16,7 @@ public class LoginController {
 
     private LoginService loginService;
 
+    @CrossOrigin
     @PostMapping("/registration")
     public ResponseEntity<Object> registerUser(@RequestBody RegistrationForm registrationForm) {
         ResponseEntity responseEntity;
@@ -33,6 +34,7 @@ public class LoginController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/login/{username}/{password}")
     public ResponseEntity<Object> loginUser(@PathVariable String username, @PathVariable String password) {
         ResponseEntity responseEntity;

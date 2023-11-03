@@ -17,6 +17,7 @@ public class LocationController {
 
     private ILocationRepository locationRepository;
 
+    @CrossOrigin
     @PostMapping("/location/create")
     public ResponseEntity<Object> createLocation(@RequestBody Location location) {
         ResponseEntity responseEntity;
@@ -34,6 +35,7 @@ public class LocationController {
         return responseEntity;
     }
 
+    @CrossOrigin
     @GetMapping("/location/{companyId}/{serviceId}")
     public ResponseEntity<Object> getLocationByServiceKey(@PathVariable String companyId, @PathVariable String serviceId) {
         ResponseEntity responseEntity;
