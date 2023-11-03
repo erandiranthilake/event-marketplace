@@ -1,7 +1,6 @@
 package com.uta.adveng.eventmarketplace.controllers;
 
 import com.uta.adveng.eventmarketplace.dao.Location;
-import com.uta.adveng.eventmarketplace.dao.ServiceKey;
 import com.uta.adveng.eventmarketplace.dataaccess.ILocationRepository;
 import com.uta.adveng.eventmarketplace.util.ValidationUtil;
 import lombok.AllArgsConstructor;
