@@ -46,7 +46,7 @@ public class LocationController {
         } catch (RuntimeException re) {
             responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            responseEntity = new ResponseEntity<Object>("Failed to get service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity = new ResponseEntity<Object>("Failed to get Location by CompanyId and ServiceId", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
