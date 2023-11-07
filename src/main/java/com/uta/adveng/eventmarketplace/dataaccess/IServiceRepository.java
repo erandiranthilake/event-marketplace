@@ -13,4 +13,5 @@ public interface IServiceRepository extends JpaRepository<Service, String> {
 
     public List<Service> findByServiceKeyCompanyId(String companyId);
 
+    void deleteByServiceKey(ServiceKey key);
 }

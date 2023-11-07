@@ -7,6 +7,7 @@ import com.uta.adveng.eventmarketplace.util.ValidationUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -69,6 +70,27 @@ public class ServiceController {
             responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get service by Company Id", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/service/{companyId}/{serviceId}")
+    @Transactional
+    public ResponseEntity<Object> deleteServiceByServiceKey(@PathVariable String companyId, @PathVariable String serviceId) {
+        ResponseEntity responseEntity;
+        try{
+            ValidationUtil.checkNotNull(companyId, "CompanyId");
+            ValidationUtil.checkNotNull(serviceId, "ServiceId");
+
+            ServiceKey key = new ServiceKey(companyId, serviceId);
+            serviceRepository.deleteByServiceKey(key);
+
+            responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
+        } catch (RuntimeException re) {
+            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<Object>("Failed to delete service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }

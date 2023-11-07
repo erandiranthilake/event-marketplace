@@ -6,6 +6,7 @@ import com.uta.adveng.eventmarketplace.util.ValidationUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,23 @@ public class LocationController {
             responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get Location by CompanyId and ServiceId", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/location/{id}")
+    @Transactional
+    public ResponseEntity<Object> deleteLocationById(@PathVariable String id) {
+        ResponseEntity responseEntity;
+        try{
+            ValidationUtil.checkNotNull(id, "Id");
+            locationRepository.deleteById(id);
+            responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
+        } catch (RuntimeException re) {
+            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<Object>("Failed to delete Location by Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
