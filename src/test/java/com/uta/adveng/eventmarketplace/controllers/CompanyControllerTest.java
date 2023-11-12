@@ -38,6 +38,6 @@ public class CompanyControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/api/company/all")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
     }
 }

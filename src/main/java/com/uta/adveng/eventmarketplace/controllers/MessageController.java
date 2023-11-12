@@ -27,8 +27,6 @@ public class MessageController {
 
             Message response = messageRepository.save(message);
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.CREATED);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Create Message Failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -44,8 +42,6 @@ public class MessageController {
 
             List<Message> response = messageRepository.findBySenderId(senderId);
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get Message by Sender Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,8 +57,6 @@ public class MessageController {
 
             List<Message> response = messageRepository.findByReceiverId(receiverId);
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get Message by Receiver Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }

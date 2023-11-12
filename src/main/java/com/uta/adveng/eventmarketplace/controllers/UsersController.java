@@ -28,8 +28,6 @@ public class UsersController {
         try{
             List<Users> response = usersRepository.findAll();
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get all Users", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -44,8 +42,6 @@ public class UsersController {
             ValidationUtil.checkNotNull(username, "UserName");
             Users response = usersRepository.findByUsername(username);
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get service by Company Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,8 +57,6 @@ public class UsersController {
             ValidationUtil.checkNotNull(username, "UserName");
             usersRepository.deleteById(username);
             responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to delete service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
         }

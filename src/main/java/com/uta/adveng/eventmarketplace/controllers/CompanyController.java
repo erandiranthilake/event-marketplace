@@ -26,8 +26,6 @@ public class CompanyController {
         try{
             List<Company> response = companyRepository.findAll();
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get All Companies", HttpStatus.INTERNAL_SERVER_ERROR);
         }

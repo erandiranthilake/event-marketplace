@@ -28,8 +28,6 @@ public class LocationController {
 
             Location responseLocation = locationRepository.save(location);
             responseEntity = new ResponseEntity<Object>(responseLocation, HttpStatus.CREATED);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Create Location Failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -46,8 +44,6 @@ public class LocationController {
 
             List<Location> response = locationRepository.findByCompanyIdAndServiceId(companyId, serviceId);
             responseEntity = new ResponseEntity<Object>(response, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get Location by CompanyId and ServiceId", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -63,8 +59,6 @@ public class LocationController {
             ValidationUtil.checkNotNull(id, "Id");
             locationRepository.deleteById(id);
             responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to delete Location by Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -29,8 +29,6 @@ public class ServiceController {
 
             Service responseService = serviceRepository.save(service);
             responseEntity = new ResponseEntity<Object>(responseService, HttpStatus.CREATED);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Create Service Failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -49,8 +47,6 @@ public class ServiceController {
             Service responseService = serviceRepository.findByServiceKey(key);
 
             responseEntity = new ResponseEntity<Object>(responseService, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -66,8 +62,6 @@ public class ServiceController {
             List<Service> responseService = serviceRepository.findByServiceKeyCompanyId(companyId);
 
             responseEntity = new ResponseEntity<Object>(responseService, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to get service by Company Id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -87,8 +81,6 @@ public class ServiceController {
             serviceRepository.deleteByServiceKey(key);
 
             responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to delete service by Service Key", HttpStatus.INTERNAL_SERVER_ERROR);
         }

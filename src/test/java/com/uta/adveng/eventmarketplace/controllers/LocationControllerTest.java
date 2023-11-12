@@ -37,8 +37,8 @@ public class LocationControllerTest {
     @Test
     public void postLocation_return_success() throws Exception {
         Mockito.when(locationRepository.save(location)).thenReturn(location);
-        ResultActions entity = mvc.perform(MockMvcRequestBuilders
-                .post("/location/create")
+        mvc.perform(MockMvcRequestBuilders
+                .post("/api/location/create")
                 .content(asJsonString(location))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
