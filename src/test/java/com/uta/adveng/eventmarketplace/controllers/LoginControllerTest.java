@@ -45,10 +45,33 @@ public class LoginControllerTest {
     @Test
     public void getLogin_return_success() throws Exception {
         Mockito.when(loginService.loginUser("username", "password")).thenReturn(users);
-         mvc.perform(MockMvcRequestBuilders.get("/api/login/{username}/{password}","username", "password")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+         mvc.perform(MockMvcRequestBuilders
+                 .get("/api/login/{username}/{password}","username", "password")
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(asJsonString(users))));
     }
+
+    @Test
+    public void postRegistration_throw_runtimeexception() throws Exception {
+        Mockito.when(loginService.saveRegistrationForm(Mockito.any(RegistrationForm.class))).thenThrow(new RuntimeException());
+        mvc.perform(MockMvcRequestBuilders
+                .post("/api/registration")
+                .content(asJsonString(registrationForm))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void getLogin_throw_runtimeException() throws Exception {
+        Mockito.when(loginService.loginUser("username", "password")).thenThrow(new RuntimeException());
+        mvc.perform(MockMvcRequestBuilders
+                .get("/api/login/{username}/{password}","username", "password")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
+    }
+
 }

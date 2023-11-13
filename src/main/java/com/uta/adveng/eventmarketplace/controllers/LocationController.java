@@ -57,7 +57,7 @@ public class LocationController {
         ResponseEntity responseEntity;
         try{
             ValidationUtil.checkNotNull(id, "Id");
-            locationRepository.deleteById(id);
+            locationRepository.deleteById(Long.getLong(id));
             responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to delete Location by Id", HttpStatus.INTERNAL_SERVER_ERROR);

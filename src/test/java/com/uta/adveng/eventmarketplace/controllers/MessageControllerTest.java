@@ -47,7 +47,8 @@ public class MessageControllerTest {
     @Test
     public void getMessageBySenderId_return_success() throws Exception {
         Mockito.when(messageRepository.findBySenderId("senderId")).thenReturn(new ArrayList<>(Arrays.asList(message)));
-        mvc.perform(MockMvcRequestBuilders.get("/api/message/send/{senderId}","senderId")
+        mvc.perform(MockMvcRequestBuilders
+                .get("/api/message/send/{senderId}","senderId")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -62,5 +63,26 @@ public class MessageControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(asJsonString(message))));
+    }
+
+    @Test
+    public void postMessage_throw_exception() throws Exception {
+        Mockito.when(messageRepository.save(message)).thenThrow(new RuntimeException());
+        mvc.perform(MockMvcRequestBuilders
+                .post("/api/message/create")
+                .content(asJsonString(message))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void getMessageBySenderId_throw_exception() throws Exception {
+        Mockito.when(messageRepository.findBySenderId("senderId")).thenThrow(new RuntimeException());
+        mvc.perform(MockMvcRequestBuilders
+                .get("/api/message/send/{senderId}","senderId")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isInternalServerError());
     }
 }

@@ -26,8 +26,6 @@ public class LoginController {
 
             Users user = loginService.saveRegistrationForm(registrationForm);
             responseEntity = new ResponseEntity<Object>(user, HttpStatus.CREATED);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("REGISTRATION FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -44,8 +42,6 @@ public class LoginController {
 
             Users user = loginService.loginUser(username, password);
             responseEntity = new ResponseEntity<Object>(user, HttpStatus.OK);
-        } catch (RuntimeException re) {
-            responseEntity = new ResponseEntity<Object>(re.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("LOGIN FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
         }

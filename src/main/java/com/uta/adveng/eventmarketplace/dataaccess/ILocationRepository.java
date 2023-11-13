@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ILocationRepository extends JpaRepository<Location, String> {
+public interface ILocationRepository extends JpaRepository<Location, Long> {
     public List<Location> findByCompanyIdAndServiceId(String companyId, String serviceId);
 }
