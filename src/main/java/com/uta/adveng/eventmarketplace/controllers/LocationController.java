@@ -53,11 +53,11 @@ public class LocationController {
     @CrossOrigin
     @DeleteMapping("/location/{id}")
     @Transactional
-    public ResponseEntity<Object> deleteLocationById(@PathVariable String id) {
+    public ResponseEntity<Object> deleteLocationById(@PathVariable Long id) {
         ResponseEntity responseEntity;
         try{
-            ValidationUtil.checkNotNull(id, "Id");
-            locationRepository.deleteById(Long.getLong(id));
+            ValidationUtil.checkNotNull(String.valueOf(id), "Id");
+            locationRepository.deleteById(id);
             responseEntity = new ResponseEntity<Object>(HttpStatus.OK);
         } catch (Exception e) {
             responseEntity = new ResponseEntity<Object>("Failed to delete Location by Id", HttpStatus.INTERNAL_SERVER_ERROR);

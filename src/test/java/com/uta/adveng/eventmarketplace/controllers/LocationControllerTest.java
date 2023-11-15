@@ -54,11 +54,11 @@ public class LocationControllerTest {
     @Test
     public void deleteLocation_return_success() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                .delete("/api/location/{id}","1")
+                .delete("/api/location/{id}",1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        Mockito.verify(locationRepository, times(1)).deleteById(Long.getLong("1"));
+        Mockito.verify(locationRepository, times(1)).deleteById(1L);
     }
 
     @Test
